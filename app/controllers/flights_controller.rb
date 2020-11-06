@@ -1,4 +1,5 @@
 class FlightsController < ApplicationController
+  include FlightsHelper
   def index
     @flights = Flight.all
   end
