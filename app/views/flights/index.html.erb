@@ -1,1 +1,18 @@
 <%= render "search_form" %>
+
+<br/>
+
+<% if @available_flights.any? %>
+  <% @available_flights.each do |flight| %>
+    <% departure_airport = Airport.find(flight.from_airport_id).code %>
+    <% arrival_airport = Airport.find(flight.to_airport_id).code %>
+    <% selected_date = flight.scheduled_on.strftime('%B %d, %Y') %>
+    <% scheduled_time = flight.scheduled_on.strftime('%H:%M') %>
+    <% arrival_time = (flight.scheduled_on + (flight.duration/60).to_i.hours).strftime('%H:%M') %>
+    <li>
+      <%= scheduled_time %> - <%= arrival_time %> Nonstop <%= (flight.duration/60) %> hours <%= departure_airport %> - <%= arrival_airport %>
+    </li>
+  <% end %>
+<% else %>
+  <p>There are no available flights on the selected date</p>
+<% end %>
