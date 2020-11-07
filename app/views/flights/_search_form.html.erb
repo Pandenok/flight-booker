@@ -4,12 +4,12 @@
   <% @month_options = Flight.all.map { |flight| flight.scheduled_on.month }.uniq %>
   <% @day_options = Flight.all.map { |flight| flight.scheduled_on.day }.uniq %>
 
-  <%= select_tag(:from_airport_id, options_for_select(@airport_options), { prompt: 'From?' }) %>
-  <%= select_tag(:to_airport_id, options_for_select(@airport_options), { prompt: 'To?' }) %>
-  <%= select_tag(:pax, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 3]]), { prompt: 'Number of passengers' }) %>
-  <%= select_tag(:day, options_for_select(@day_options)) %>
-  <%= select_tag(:month, options_for_select(@month_options)) %>
-  <%= select_tag(:year, options_for_select(@year_options)) %>
+  <%= select_tag(:from_airport_id, options_for_select(@airport_options, selected: params[:from_airport_id]), { prompt: 'From?' }) %>
+  <%= select_tag(:to_airport_id, options_for_select(@airport_options, selected: params[:to_airport_id]), { prompt: 'To?' }) %>
+  <%= select_tag(:pax, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4]], selected: params[:pax]), { prompt: 'Number of passengers' }) %>
+  <%= select_tag(:day, options_for_select(@day_options, selected: params[:day])) %>
+  <%= select_tag(:month, options_for_select(@month_options, selected: params[:month])) %>
+  <%= select_tag(:year, options_for_select(@year_options, selected: params[:year])) %>
   
   <%= submit_tag("Search flights") %>
 <% end %>
