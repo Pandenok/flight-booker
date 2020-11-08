@@ -1,0 +1,9 @@
+<% departure_airport = @selected_flight.from_airport.code %>
+<% arrival_airport = @selected_flight.to_airport.code %>
+<% selected_date = @selected_flight.scheduled_on.strftime('%B %d, %Y') %>
+<% scheduled_time = @selected_flight.scheduled_on.strftime('%H:%M') %>
+<% arrival_time = (@selected_flight.scheduled_on + (@selected_flight.duration/60).to_i.hours).strftime('%H:%M') %>
+
+<%= selected_date %>  <%= scheduled_time %> - <%= arrival_time %> Nonstop <%= (@selected_flight.duration/60) %> hours <%= departure_airport %> - <%= arrival_airport %>
+
+<%= render "new_booking_form" %>

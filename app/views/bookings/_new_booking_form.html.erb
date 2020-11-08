@@ -1,0 +1,13 @@
+<%= form_with model: @booking, local: true do |f| %>
+  <%= f.fields_for :passengers do |passengers_data| %>
+    <% i = 1 %>
+    <%= "Passenger #{i} information" %><br/>
+    <%= f.label :name, 'Name: '%>
+    <%= passengers_data.text_field :name, placeholder: "Passenger's name" %>
+    <%= f.label :email, 'Email: '%>
+    <%= passengers_data.email_field :email, placeholder: "name@example.com" %>
+    <br/>
+    <% i += 1%>
+  <% end %>
+  <%= f.submit 'Purchase Ticket' %>
+<% end %>
