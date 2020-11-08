@@ -9,5 +9,6 @@
     <br/>
     <% i += 1%>
   <% end %>
+  <%= f.hidden_field :flight_id, value: params[:flight] %>
   <%= f.submit 'Purchase Ticket' %>
 <% end %>
