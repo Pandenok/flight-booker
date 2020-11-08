@@ -1,0 +1,22 @@
+<p>OdinAir Ticket Receipt</p>
+<p>Your booking number is ODNBKNG<%= @booking.id %> </p>
+
+<p>
+  <% @booking.passengers.each_with_index do |passenger, idx| %>
+    <li>
+      Passenger <%= idx + 1 %><br/>
+      <%= passenger.name %><br/>
+      Your ticket number is <%= sprintf('%010d', rand(10**10)) %>
+    </li>
+  <% end %>
+</p>
+
+<p> Departure  <%= @booking.flight.scheduled_on.strftime('%d %B %Y') %> </p>
+<p> <%= @booking.flight.scheduled_on.strftime('%H:%M') %> </p>
+<p> <%= @booking.flight.from_airport.code %> </p>
+<p> <%= (@booking.flight.scheduled_on + (@booking.flight.duration/60).to_i.hours).strftime('%H:%M') %> </p>
+<p> <%= @booking.flight.to_airport.code %> </p>
+
+<p>We look forward to welcoming you on board!</p>
+
+<%= link_to 'Search for more flights', root_path %>
