@@ -6,7 +6,7 @@
     <% scheduled_time = flight.scheduled_on.strftime('%H:%M') %>
     <% arrival_time = (flight.scheduled_on + (flight.duration/60).to_i.hours).strftime('%H:%M') %>
     <li>
-      <%= radio_button_tag(:flight, flight.id) %>
+      <%= radio_button_tag(:flight, flight.id, { checked: true }) %>
       <%= scheduled_time %> - <%= arrival_time %> Nonstop <%= (flight.duration/60) %> hours <%= departure_airport %> - <%= arrival_airport %>
     </li>
   <% end %>

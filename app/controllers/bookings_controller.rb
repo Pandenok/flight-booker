@@ -11,7 +11,7 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     if @booking.save
-      flash[:success] = 'Booking saved!'
+      flash[:success] = 'Booking successfully completed!'
       redirect_to booking_path(@booking)
     else
       flash[:alert] = 'An error occured!'

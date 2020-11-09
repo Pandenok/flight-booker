@@ -3,9 +3,9 @@
     <% i = 1 %>
     <%= "Passenger #{i} information" %><br/>
     <%= f.label :name, 'Name: '%>
-    <%= passengers_data.text_field :name, placeholder: "Passenger's name" %>
+    <%= passengers_data.text_field :name, placeholder: "Passenger's name", required: true %>
     <%= f.label :email, 'Email: '%>
-    <%= passengers_data.email_field :email, placeholder: "name@example.com" %>
+    <%= passengers_data.email_field :email, placeholder: "name@example.com", required: true %>
     <br/>
     <% i += 1%>
   <% end %>
