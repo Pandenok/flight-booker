@@ -2,8 +2,10 @@
 
 <br/>
 
-<% if @available_flights.any? %>
-  <%= render "search_results_form" %>
-<% else %>
-  <p>There are no available flights on the selected date</p>
+<% unless @available_flights.nil? %>
+  <% if @available_flights.any? %>
+    <%= render "search_results_form" %>
+  <% else %>
+    <p>There are no available flights on the selected date</p>
+  <% end %>
 <% end %>
