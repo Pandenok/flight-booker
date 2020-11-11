@@ -9,15 +9,15 @@
 tables = ActiveRecord::Base.connection.tables - ['schema_migrations']
 
 # In PostgreSQL, it does not do this automatically. You can use TRUNCATE TABLE table RESTART IDENTITY;
-# tables.each do |table|
-#   ActiveRecord::Base.connection.execute("TRUNCATE #{table}")
-# end
+tables.each do |table|
+  ActiveRecord::Base.connection.execute("TRUNCATE #{table} RESTART IDENTITY")
+end
 
 # In SQLite, there is no TRUNCATE statement, instead, it's
-tables.each do |table|
-  ActiveRecord::Base.connection.execute "DELETE FROM `#{table}`"
-  ActiveRecord::Base.connection.execute "DELETE FROM sqlite_sequence WHERE name='#{table}'"
-end
+# tables.each do |table|
+#   ActiveRecord::Base.connection.execute "DELETE FROM `#{table}`"
+#   ActiveRecord::Base.connection.execute "DELETE FROM sqlite_sequence WHERE name='#{table}'"
+# end
 
 airports = Airport.create([
   { code: 'SFO' },
@@ -28,7 +28,7 @@ flights = Flight.create([
   { from_airport_id: airports.first.id, to_airport_id: airports.last.id, duration: 320, scheduled_on: "2020-12-25 07:00:00"},
   { from_airport_id: airports.first.id, to_airport_id: airports.last.id, duration: 320, scheduled_on: "2020-12-25 09:00:00"},
   { from_airport_id: airports.first.id, to_airport_id: airports.last.id, duration: 320, scheduled_on: "2020-12-25 11:00:00"},
-  { from_airport_id: airports.last.id, to_airport_id: airports.first.id, duration: 385, scheduled_on: "2020-12-26 07:00:00"},
-  { from_airport_id: airports.last.id, to_airport_id: airports.first.id, duration: 385, scheduled_on: "2020-12-26 09:00:00"},
-  { from_airport_id: airports.last.id, to_airport_id: airports.first.id, duration: 385, scheduled_on: "2020-12-26 11:00:00"}
+  { from_airport_id: airports.last.id, to_airport_id: airports.first.id, duration: 380, scheduled_on: "2020-12-26 07:00:00"},
+  { from_airport_id: airports.last.id, to_airport_id: airports.first.id, duration: 380, scheduled_on: "2020-12-26 09:00:00"},
+  { from_airport_id: airports.last.id, to_airport_id: airports.first.id, duration: 380, scheduled_on: "2020-12-26 11:00:00"}
 ])
