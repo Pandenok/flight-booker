@@ -1,5 +1,7 @@
 {
   "name": "flight-booker",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "bulma": "^0.9.1"
+  }
 }

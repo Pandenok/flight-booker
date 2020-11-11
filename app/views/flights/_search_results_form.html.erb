@@ -5,11 +5,33 @@
     <% selected_date = flight.scheduled_on.strftime('%B %d, %Y') %>
     <% scheduled_time = flight.scheduled_on.strftime('%H:%M') %>
     <% arrival_time = (flight.scheduled_on + (flight.duration/60).to_i.hours).strftime('%H:%M') %>
-    <li>
-      <%= radio_button_tag(:flight, flight.id, { checked: true }) %>
-      <%= scheduled_time %> - <%= arrival_time %> Nonstop <%= (flight.duration/60) %> hours <%= departure_airport %> - <%= arrival_airport %>
-    </li>
+
+    <div class="columns is-vcentered is-centered">
+      <div class="column is-narrow has-text-centered">
+        <%= radio_button_tag(:flight, flight.id, { checked: true }) %>
+      </div>
+
+      <div class="column is-three-fifths">
+        <div class="box">
+          <div class="columns">
+            <div class="column has-text-centered">
+              <%= scheduled_time %><br/>
+              <%= departure_airport %>
+            </div>
+            <div class="column has-text-centered">
+              Nonstop<br/>
+              <%= (flight.duration/60) %> hours
+            </div>
+            <div class="column has-text-centered">
+              <%= arrival_time %><br/>
+              <%= arrival_airport %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   <% end %>
+
   <%= hidden_field_tag :pax, params[:pax] %>
-  <%= f.submit "Choose and continue" %>
+  <%= f.submit "Continue to passenger details", class: "button is-dark is-outlined" %>
 <% end %>

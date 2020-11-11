@@ -4,12 +4,64 @@
   <% @month_options = Flight.all.map { |flight| flight.scheduled_on.month }.uniq %>
   <% @day_options = Flight.all.map { |flight| flight.scheduled_on.day }.uniq %>
 
-  <%= select_tag(:from_airport_id, options_for_select(@airport_options, selected: params[:from_airport_id]), { prompt: 'From?' }) %>
-  <%= select_tag(:to_airport_id, options_for_select(@airport_options, selected: params[:to_airport_id]), { prompt: 'To?' }) %>
-  <%= select_tag(:pax, options_for_select(1..4, selected: params[:pax]), { prompt: 'Number of passengers' }) %>
-  <%= select_tag(:day, options_for_select(@day_options, selected: params[:day])) %>
-  <%= select_tag(:month, options_for_select(@month_options, selected: params[:month])) %>
-  <%= select_tag(:year, options_for_select(@year_options, selected: params[:year])) %>
-  
-  <%= submit_tag("Search flights") %>
+  <div class="field is-horizontal">
+    <div class="field-body">
+      <div class="field">
+        <div class="control is-expanded">
+          <div class="select is-fullwidth">
+            <%= select_tag(:from_airport_id, options_for_select(@airport_options, selected: params[:from_airport_id]), { prompt: 'From?' }) %>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="control is-expanded">
+          <div class="select is-fullwidth">
+            <%= select_tag(:to_airport_id, options_for_select(@airport_options, selected: params[:to_airport_id]), { prompt: 'To?' }) %>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="control">
+          <div class="select">
+            <%= select_tag(:pax, options_for_select(1..4, selected: params[:pax]), { prompt: 'Passengers' }) %>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-grouped is-grouped-right">
+        <div class="field">
+          <div class="control">
+            <div class="select">
+              <%= select_tag(:day, options_for_select(@day_options, selected: params[:day])) %>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="control">
+            <div class="select">
+              <%= select_tag(:month, options_for_select(@month_options, selected: params[:month])) %>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="control">
+            <div class="select">
+              <%= select_tag(:year, options_for_select(@year_options, selected: params[:year])) %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="field is-grouped is-grouped-right">
+    <div class="control">
+      <%= submit_tag("Show flights", class: "button is-dark is-outlined") %>
+    </div>
+  </div>
+
 <% end %>

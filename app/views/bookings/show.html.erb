@@ -1,22 +1,69 @@
-<p>OdinAir Ticket Receipt</p>
-<p>Your booking number is ODNBKNG<%= @booking.id %> </p>
+<section class="hero is-fullheight is-light is-bold">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <div class="column is-half is-offset-one-quarter">
+        <h1 class="title">
+          Trip summary
+        </h1>
+        <h2 class="subtitle">
+         <%= @booking.flight.scheduled_on.strftime('%d %B %Y') %>
+        </h2>
+        <table class="table is-fullwidth">
+          <thead>
+            <tr>
+              <th>Departure</th>
+              <th>Arrival</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= @booking.flight.from_airport.code %> <%= @booking.flight.scheduled_on.strftime('%H:%M') %></td>
+              <td><%= @booking.flight.to_airport.code %> <%= (@booking.flight.scheduled_on + (@booking.flight.duration/60).to_i.hours).strftime('%H:%M') %></td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <h1 class="title">
+          Passenger details
+        </h1>
+        <table class="table is-fullwidth has-text-left">
+          <thead>
+            <tr>
+              <th>Passenger name</th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @booking.passengers.each_with_index do |passenger, idx| %>
+            <tr>
+              <td><%= passenger.name %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+  
+        <h1 class="title">
+          Contact details
+        </h1>
+        <table class="table is-fullwidth has-text-left">
+          <thead>
+            <tr>
+              <th>Passenger name</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @booking.passengers.each_with_index do |passenger, idx| %>
+            <tr>
+              <td><%= passenger.name %></td>
+              <td><%= passenger.email %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+  
+        <%= link_to 'Purchase', root_path, class: "button is-large is-dark is-outlined" %>
 
-<p>
-  <% @booking.passengers.each_with_index do |passenger, idx| %>
-    <li>
-      Passenger <%= idx + 1 %><br/>
-      <%= passenger.name %><br/>
-      Your ticket number is <%= sprintf('%010d', rand(10**10)) %>
-    </li>
-  <% end %>
-</p>
-
-<p> Departure  <%= @booking.flight.scheduled_on.strftime('%d %B %Y') %> </p>
-<p> <%= @booking.flight.scheduled_on.strftime('%H:%M') %> </p>
-<p> <%= @booking.flight.from_airport.code %> </p>
-<p> <%= (@booking.flight.scheduled_on + (@booking.flight.duration/60).to_i.hours).strftime('%H:%M') %> </p>
-<p> <%= @booking.flight.to_airport.code %> </p>
-
-<p>We look forward to welcoming you on board!</p>
-
-<%= link_to 'Search for more flights', root_path %>
+      </div>
+    </div>
+  </div>
+</section>

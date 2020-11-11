@@ -1,14 +1,33 @@
 <%= form_with model: @booking, local: true do |f| %>
+  <% i = 1 %>
   <%= f.fields_for :passengers do |passengers_data| %>
-    <% i = 1 %>
-    <%= "Passenger #{i} information" %><br/>
-    <%= f.label :name, 'Name: '%>
-    <%= passengers_data.text_field :name, placeholder: "Passenger's name", required: true %>
-    <%= f.label :email, 'Email: '%>
-    <%= passengers_data.email_field :email, placeholder: "name@example.com", required: true %>
-    <br/>
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label class="label">
+          <%= "Passenger #{i}" %><br/>
+        </label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+            <%= passengers_data.text_field :name, placeholder: "Passenger's name", required: true, class: "input" %>
+          </p>
+        </div>
+        <div class="field">
+          <p class="control is-expanded">
+            <%= passengers_data.email_field :email, placeholder: "name@example.com", required: true, class: "input" %>
+          </p>
+        </div>
+      </div>
+    </div>
     <% i += 1%>
   <% end %>
+  
   <%= f.hidden_field :flight_id, value: params[:flight] %>
-  <%= f.submit 'Purchase Ticket' %>
+
+  <div class="field is-grouped is-grouped-right">
+    <div class="control">
+      <%= f.submit 'Purchase Ticket', class: "button is-dark is-outlined" %>
+    </div>
+  </div>
 <% end %>

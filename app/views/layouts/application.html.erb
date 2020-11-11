@@ -10,12 +10,25 @@
   </head>
 
   <body>
-    <% flash.each do |type, msg| %>
-      <div>
-        <%= msg %>
+    <% if flash[:notice] %>
+      <div class="notification is-primary global-notification">
+        <p class="notice"><%= notice %></p>
       </div>
     <% end %>
-    
+    <% if flash[:alert] %>
+      <div class="notification is-danger global-notification">
+        <p class="alert"><%= alert %></p>
+      </div>
+    <% end %>
+
     <%= yield %>
   </body>
+
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        Created by <a href="https://github.com/Pandenok">Pandenok</a> &copy
+      </p>
+    </div>
+  </footer>
 </html>
