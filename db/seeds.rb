@@ -10,7 +10,7 @@ tables = ActiveRecord::Base.connection.tables - ['schema_migrations']
 
 # In PostgreSQL, it does not do this automatically. You can use TRUNCATE TABLE table RESTART IDENTITY;
 tables.each do |table|
-  ActiveRecord::Base.connection.execute("TRUNCATE #{table} RESTART IDENTITY")
+  ActiveRecord::Base.connection.execute("TRUNCATE #{table} RESTART IDENTITY CASCADE")
 end
 
 # In SQLite, there is no TRUNCATE statement, instead, it's
