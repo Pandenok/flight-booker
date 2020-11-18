@@ -11,7 +11,10 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     if @booking.save
-      flash[:success] = 'Booking successfully completed!'
+      flash[:notice] = 'Booking successfully completed!'
+      @booking.passengers.each do |passenger|
+        PassengerMailer.confirmation_email(passenger).deliver_now
+      end
       redirect_to booking_path(@booking)
     else
       flash[:alert] = 'An error occured!'
