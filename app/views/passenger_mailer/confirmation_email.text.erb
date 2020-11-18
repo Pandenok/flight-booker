@@ -1,0 +1,16 @@
+Dear <%= @passenger.name %>,
+===========================
+
+this is to confirm that you have successfully booked the following flight:
+
+   <%= @selected_date %>
+  Departure   Arrival  
+ ----------- --------- 
+  <%= @departure_airport %>         <%= @arrival_airport %>      
+  <%= @scheduled_time %>       <%= @arrival_time %>   
+
+YOUR BOOKING NUMBER (PNR) IS ODNBKNG<%= @passenger.booking.id %>
+Ticket Number: <%= sprintf('%010d', rand(10**10)) %>
+
+We look forward to welcoming you on board!
+

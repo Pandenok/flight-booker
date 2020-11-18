@@ -1,0 +1,25 @@
+<h1>Dear <%= @passenger.name %>,</h1>
+
+<p>this is to confirm that you have successfully booked the following flight.</p>
+
+<h4><%= @selected_date %></h4>
+
+<table style="width:25%">
+  <tr style="text-align: left">
+    <th>Departure</th>
+    <th>Arrival</th>
+  </tr>
+  <tr>
+    <td><%= @departure_airport %></td>
+    <td><%= @arrival_airport %></td>
+  </tr>
+  <tr>
+    <td><%= @scheduled_time %></td>
+    <td><%= @arrival_time %></td>
+  </tr>
+</table> 
+
+<p>YOUR BOOKING NUMBER (PNR) IS <strong>ODNBKNG<%= @passenger.booking.id %></strong></p>
+<p>Ticket Number: <b><%= sprintf('%010d', rand(10**10)) %></b></p>
+
+<h3>We look forward to welcoming you on board!</h3>
