@@ -117,3 +117,4 @@ end
 4. I don't know how to disable the submit button on search_results_form if there is no value selected or how to throw an error, so I've just set a parameter of radio button to `{ checked: true }`. All the suggestions I found were involving JavaScript. I may come back to that one day and fix it.
 5. I feel rather confident with `bulma`, maybe it's time to try some new front-end frameworks, like `materialize` or `bootstrap`. 
 6. I definitely need to learn `simple form` gem as well.
+7. Setting up a mailer was pretty much easy task. It’s very similar to building a new controller and views. In order to not fire off a bunch of emails when testing app in the development environment `letter_opener` gem was used and its configuration is rather straightforward.
